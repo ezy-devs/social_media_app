@@ -87,6 +87,9 @@ DATABASES = {
         'PASSWORD': db_info.password,
         'HOST': db_info.hostname,
         'PORT': db_info.port,
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
