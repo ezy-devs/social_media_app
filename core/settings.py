@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-t^yebuobi_jstti6503s77z=c0pmwh^1-q6x%l!$u16le(fz3=
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-DATABASE_URL = postgresql://postgres:AGfMxoebJwnbaClMwVUqjniXgspNZrkl@postgres.railway.internal:5432/railway
+DATABASE_URL = 'postgresql://postgres:AGfMxoebJwnbaClMwVUqjniXgspNZrkl@postgres.railway.internal:5432/railway'
 
 # Application definition
 
@@ -87,17 +87,27 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASE_URL = os.getenv('DATABASE_URL')  # Get from Railway environment variables
 db_info = urlparse(DATABASE_URL)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': db_info.path[1:],
+#         'USER': db_info.username,
+#         'PASSWORD': db_info.password,
+#         'HOST': db_info.hostname,
+#         'PORT': db_info.port,
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': db_info.path[1:],
-        'USER': db_info.username,
-        'PASSWORD': db_info.password,
-        'HOST': db_info.hostname,
-        'PORT': db_info.port,
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'AGfMxoebJwnbaClMwVUqjniXgspNZrkl',
+        'HOST': 'postgres.railway.internal',
+        'PORT': '5432',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
