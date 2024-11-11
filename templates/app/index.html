@@ -1,0 +1,149 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+ 
+
+  <div class="container" style="padding-top: 60px;">
+    <div class="flex">
+      <div class="user flex" style="width: 100%; justify-content: space-between;">
+        <div class="profile" style="display: flex; align-items: center;">
+          
+          <div class="username" style="margin-bottom: 25px;">
+            <h6 class="title" style="margin-bottom: 18px;margin-left: 50px;"><a href="create_post.html"
+                class="form-control"> Add new post</a></h6>
+          </div>
+        </div>
+        <div class="btn">
+          <a href="#" class="btn"><i class="fa fa-plus"
+              style="background: #966596; padding: 4px; border-radius: 50px; color: white;"></i> </a>
+        </div>
+      </div>
+    </div>
+   
+    <div class="grid">
+      <div class="main-content">
+        <div class="grid main-content">
+          <div class="card post">
+            <div class="card-body">
+              <div class="profile">
+                <div class="profile-image">
+                  <img src="{{post_user_profile.profileimage.url}}" alt="">
+                </div>
+                <div class="username" style="margin-bottom: 10px;">
+                  <h5 class="card-title" style="margin-bottom: 18px;"><a href="/profile/{{post.user}}"
+                      style="color: black;">@{{post.user}}</a>
+                  </h5>
+                </div>
+                <!-- <div>
+                  <p>Delete post</p>
+                </div> -->
+              </div>
+
+              <div class="content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptate modi libero quia assumenda? Dolores commodi nisi eos doloremque velit ut autem, ad alias dolor dicta reiciendis ex rerum reprehenderit!
+                </p>
+              </div>
+             
+              <div class="content-image card-img-top">
+                <img src="assets/images/codes.jpg" alt="" style="width: 100%;" class="card-img-top">
+              </div>
+              
+            
+              <div class="action">
+                <div>
+                  <a href="/like-post?post_id={{post.id}}" class="btn btn-primary">
+                    <i class="fas fa-heart-o"></i>
+                  </a>
+                  <p style="font-size: 12px;">12</p>
+                </div>
+                <div>
+                  <a href="/like-post?post_id={{post.id}}" class="btn btn-primary">
+                    <i class="fas fa-comment-o"></i>
+                   
+                  </a>
+                  
+                  <p style="font-size: 12px; color: #f5f5f5;">10</p>
+                </div>
+                <div>
+                  <form action="/comments?post_id={{post_id}}" method="post" class="d-flex">
+                   
+                    <input type="text" name="message" class="form-control" placeholder="what's your take on this?">
+                    <input type="hidden" value="{{post.id}}" name="post_id" class="form-control">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+      <div class="middle-content friends">
+        <div>
+          <h5 class="title" style="margin-bottom: 5px; margin-top: 5px; color: #f5f5f5;">
+            Recommend for You
+          </h5>
+        </div>
+        <div class="block">
+          <div class="user flex">
+            <div class="profile" style="display: flex; align-items: center;">
+              <div class="profile-image">
+                <img src="assets/images/emmynzos.jpg" alt="">
+              </div>
+              <div class="username" style="margin-bottom: 26px;">
+                <h6 class="title" style="margin-bottom: 18px;"><a href="#" class="btn">Nzorov Emmanuel</a></h6>
+              </div>
+            </div>
+            <div class="btn">
+              <a href="#" class="btn btn-primary follow">Follow</a>
+            </div>
+          </div>
+          <div class="user flex">
+            <div class="profile" style="display: flex; align-items: center;">
+              <div class="profile-image">
+                <img src="assets/images/emmynzos.jpg" alt="">
+              </div>
+              <div class="username" style="margin-bottom: 26px;">
+                <h6 class="title" style="margin-bottom: 18px;"><a href="#" class="btn">Nzorov Emmanuel</a></h6>
+              </div>
+            </div>
+            <div class="btn">
+              <a href="#" class="btn btn-primary follow">Follow</a>
+            </div>
+          </div>
+          <div class="user flex">
+            <div class="profile" style="display: flex; align-items: center;">
+              <div class="profile-image">
+                <img src="assets/images/emmynzos.jpg" alt="">
+              </div>
+              <div class="username" style="margin-bottom: 26px;">
+                <h6 class="title" style="margin-bottom: 18px;"><a href="#" class="btn">Nzorov Emmanuel</a></h6>
+              </div>
+            </div>
+            <div class="btn">
+              <a href="#" class="btn btn-primary follow">Follow</a>
+            </div>
+          </div>
+          <div class="user flex">
+            <div class="profile" style="display: flex; align-items: center;">
+              <div class="profile-image">
+                <img src="assets/images/codes.jpg" alt="">
+              </div>
+              <div class="username" style="margin-bottom: 26px;">
+                <h6 class="title" style="margin-bottom: 18px;"><a href="#" class="btn">Akuta Ignatius</a></h6>
+              </div>
+            </div>
+            <div class="btn">
+              <a href="#" class="btn btn-primary follow">Follow</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  {% endblock %}

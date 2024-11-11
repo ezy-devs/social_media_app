@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+{% block content %}
+
+  <div class="container" style="padding-top: 60px;">
+    <div class="form-container form-control">
+      <div class="profile-image">
+        <img src="{% static 'assets/images/default_image.jpg' %}" alt="" style="width: 80px; height: 80px;">
+      </div>
+
+      <h4 class="form-title">Welcome Back!, Login</h4>
+
+      {% for message in messages %}
+      <div class="msg error">
+        {{message}}
+      </div>
+      {% endfor %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-container">
+          <label class="form-label">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="Your username">
+        </div>
+        
+        <div class="input-container">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="password">
+        </div>
+       
+        <div class="input-container" style="margin-top: 5px; margin-bottom: 5px;">
+          <input type="submit" value="Sign Up" class="btn bg-color btn-big">
+        </div>
+        <div class="input-container">
+          <p>Don't have account? <a href="{% url 'register' %}" class="btn-link ">Register</a></p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  {% endblock %}

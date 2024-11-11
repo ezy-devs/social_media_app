@@ -1,0 +1,115 @@
+
+body{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navbar {
+  padding-left: 10px;
+  padding-right: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #0a1f44;
+  color: white;
+}
+.navbar-brand {
+   color:#6f42c1;
+}
+.sidenav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.sidenav a, .btn-bg {
+  transition: 1s;
+  color: white;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.openNav {
+  display: none;
+}
+.closebtn {
+  display: none;
+}
+.profile.flex {
+  display: none;
+}
+.nav.messages {
+  background-color: #0a1f44;
+  color: white;
+  margin-bottom: 5px;
+  padding: 5px;
+  margin-top: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 60px;
+  z-index: 10;
+}
+.user ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+.user ul li {
+  list-style: none;
+  
+}
+@media only screen and (max-width: 765px) {
+  .sidenav {
+      display: block;
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top:0;
+      left: 0;
+      background-color: #0a1f44;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      font-size: 12px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: #380a44;;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    .openNav {
+      display: block;
+    }
+    .search {
+      margin-right: 50px;
+    }
+    .profile-image.nav {
+      display: none;
+    }
+    .profile.flex {
+      display: block;
+    }
+  
+}
+

@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="onboarding-container">
+        <h1>ONBOARDING PROCESS</h1>
+        <div class="onboarding-step active" id="step1">
+            <h2>Step 1: Complete Your Profile</h2>
+            <p>Please fill in some additional details to complete your profile.</p>
+            <form action="" method="post">
+
+                <label for="fullname">Fullname:</label>
+                <input type="text" class="form-control" id="username" name="fullname" placeholder="Enter Your Full Name" required>
+
+                <label for="studentId">Student ID:</label>
+                <input type="text" class="form-control" id="studentId" name="studentId" placeholder="e.g: FPG/HND/SWD/24/810" required>
+
+                <label for="fullname">Course:</label>
+                <input type="text" class="form-control" id="course" name="course" placeholder="e.g Software and Web development"
+                    required>
+                <button onclick="nextStep(2)" class="btn btn-primary">Next</button>
+        </div>
+
+        <div class="onboarding-step" id="step2">
+            <h2>Step 2: Academic Details</h2>
+            <p>Let us know your preferences to customize your experience.</p>
+            <section>
+
+                <label for="yearOfStudy">Year of Study:</label>
+                <input type="number" class="form-control" id="yearOfStudy" name="enroll_year" min="1" max="6" required>
+
+                <label for="gpa">Current GPA:</label>
+                <input type="number" class="form-control" step="0.01" id="gpa" name="gpa" min="0" max="4" required="">
+
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" name="department" required>
+
+                <label for="specialization">Specialization:</label>
+                <input type="text" class="form-control" id="specialization" name="specialization">
+            </section>
+
+
+
+            <button type="submit" class="btn btn-primary">Finish</button>
+        </div>
+        </form>
+        <!-- IF THE FORM IS SUCCESSFULL REDIRECT TO THIS PAGE -->
+        <div class="onboarding-complete" id="completeMessage">
+            <h2>You're All Set!</h2>
+            <p>Thank you for completing the onboarding process. Enjoy exploring the app!</p>
+            <a href="/dashboard" class="btn">Go to Dashboard</a>
+        </div>
+    </div>
+    <script>
+        let currentStep = 1;
+
+        function nextStep(stepNumber) {
+            // Hide current step
+            document.getElementById(`step${currentStep}`).classList.remove("active");
+
+            // Show next step
+            document.getElementById(`step${stepNumber}`).classList.add("active");
+
+            // Update current step
+            currentStep = stepNumber;
+        }
+
+        function finishOnboarding() {
+            // Hide last step
+            document.getElementById(`step${currentStep}`).classList.remove("active");
+
+            // Show completion message
+            document.getElementById("completeMessage").style.display = "block";
+        }
+
+    </script>
+   {% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<div class="onboarding-container">
+  <h1>Create Account</h1>
+
+  <div class="onboarding-step active" id="step1">
+
+    <div class="profile-image">
+      <img src="{% static 'assets/images/default_image.jpg' %}" alt="" style="width: 80px; height: 80px;">
+    </div>
+    <p style="color: #42c1a6;">Please fill in some additional details to complete your profile.</p>
+
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <div class="input-container">
+        <input type="text" class="form-control" id="username" placeholder="Choose a Username" name="username" required>
+      </div>
+      <div class="input-container">
+        <input type="email" class="form-control" id="studentId" placeholder="Email Address" name="email" required>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; gap: 1rem;">
+        <div class="input-container">
+          <input type="password" class="form-control" id="course" placeholder="password" name="password" required>
+        </div>
+        <div class="input-container">
+          <input type="password" class="form-control" id="course" placeholder="Re-peat password" name="password2" required>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Next</button>
+      </div>
+
+  </div>
+  </form>
+  <!-- IF THE FORM IS SUCCESSFULL REDIRECT TO THIS PAGE -->
+  <div class="onboarding-complete" id="completeMessage">
+    <h2>You're All Set!</h2>
+    <p>Thank you for completing the onboarding process. Enjoy exploring the app!</p>
+    <a href="/dashboard" class="btn">Go to Dashboard</a>
+  </div>
+</div>
+
+{% endblock %}
