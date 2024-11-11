@@ -1,0 +1,29 @@
+.roll-1{
+
+    padding: 10px;
+    margin-left: 50%;
+    border-radius: 5px;
+    width: 300px;
+}
+.roll-2{
+    padding: 10px;
+    background-color: azure;
+    border-radius: 5px;
+    width: 300px;
+}
+
+@media screen and (max-width: 765px) {
+    .roll-1{
+
+        padding: 10px;
+        margin-left: 50%;
+        border-radius: 5px;
+        width: 200px;
+    }
+    .roll-2{
+        padding: 10px;
+        background-color: azure;
+        border-radius: 5px;
+        width: 200px;
+    }
+}

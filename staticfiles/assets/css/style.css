@@ -1,0 +1,423 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom right, #0d6efd, #6f42c1);
+    font-size: 18px;
+}
+
+
+
+
+
+.card {
+    margin-bottom: 5px;
+    max-height: 320px;
+    background: linear-gradient(to bottom right, #0a1f44, #6f42c1);
+    color: #f5f5f5;
+}
+.card.post {
+    max-height: 450px;
+    font-size: 15px;
+}
+
+img {
+    height: 220px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+
+.action{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    
+}
+
+.action > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.action .btn-bg {
+    width: 70px;
+}
+
+
+
+.navbar-bottom {
+    background: red;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    display: none;
+}
+
+.navbar-bottom ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-bottom ul li,
+a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    font-style: oblique;
+}
+
+.navbar-bottom ul li a:hover {
+    background: #eaf9e7;
+
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 5px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid .main-content {
+    display: block;
+}
+
+.main-content {
+    padding: 10px;
+}
+
+.middle-content {
+    padding: 5px;
+}
+
+.user {
+    background-color: #0a1f44;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 30px;
+    max-height: 50px;
+    margin-bottom: 5px;
+}
+
+.chat {
+    background-color: #0a1f44;
+    color: white;
+    border-radius: 5px;
+    min-height: 30px;
+    max-height: 60px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.chat .profile {
+    margin-bottom: -25px;
+    display: flexbox;
+}
+
+.chat .profile .profile-image img {
+    width: 40px;
+    height: 40px;
+}
+
+.chatbox {
+    background-color: #0a1f44;
+    position: fixed;
+    bottom: 0;
+    min-height: 20px;
+    max-height: 80px;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+}
+
+
+.user .profile {
+    margin-bottom: -25px;
+    display: flexbox;
+}
+
+.user .profile .profile-image img {
+    width: 40px;
+    height: 40px;
+}
+
+.user .profile .username, .username .btn {
+    margin-top: 15px;
+    color: #f5f5f5;
+}
+
+
+/* NEW POST  */
+.action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.action .btn-bg {
+    width: 70px;
+}
+
+.username .form-control {
+    min-width: 300px;
+}
+
+.card-img-top {
+    height: 220px; /* Fixed height */
+    object-fit: cover; 
+}
+/* NEW CHAT SECTION */
+.container.message {
+    display: flex;
+}
+
+#messages {
+    background-color: #f2b1ff59;
+    padding-top: 10px;
+    min-height: 565px;
+    scroll-behavior: smooth;
+}
+
+.container.message .card {
+    font-size: 15px;
+    padding: 10px;
+    border-top-left-radius: -1000px;
+    margin-left: 20px;
+
+}
+
+.container.message #sender {
+    margin-top: 40px;
+}
+
+#recent-chat {
+
+    background-color: #eaf9e7;
+    padding: 20px;
+    color: #d0d0d0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000000, 40% opacity;
+    text-align: center;
+}
+
+.new-message {
+    position: fixed;
+    bottom: 0;
+    min-width: 693px;
+
+}
+#reciever .card {
+    background-color: #b93fd89f;
+    color: #fff;
+}
+#sender .card {
+    background-color: #007bffe1;
+    color: #fff;
+}
+/*REGISTRATION FORM  */
+.form-container {
+    width: 40%;
+    margin: 50px auto;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    ;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+form {
+    text-align: left;
+}
+
+.msg {
+    background: #FE979C;
+    color: red;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+input:focus {
+    color: red;
+}
+.btn.btn-primary {
+    background: linear-gradient(to bottom right, #0d6efd, #6f42c1);
+    margin-left: 10px;
+}
+.btn.btn-primary.follow {
+    padding: 5px;
+}
+
+.btn.btn-primary.follow:hover {
+    animation: flip;
+    animation-duration: 2s;
+}
+.btn.btn-primary:hover {
+    animation: flip;
+    animation-duration: 2s;
+}
+@keyframes flip {
+    0%{
+        transform: translateX(0.1);
+        
+    }
+    10%{
+        transform: translateX(25);
+       
+        background: linear-gradient(to top right, #6f42c1, #fdf90dbe);
+    }
+}
+.btn-big {
+    padding: 10px 20px;
+    background-color: #00BFFF;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-big:hover {
+    background-color: #007ACC;
+}
+.btn-link {
+    color: blue;
+    text-decoration: none;
+}
+
+.update-profile input {
+    width: 100%;
+}
+
+.text-input {
+    width: 100%;
+}
+
+.input-container {
+    margin-bottom: 5px;
+}
+
+.input-container div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settinges label {
+    font-weight: 500;
+}
+
+
+
+.settings-container {
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section {
+    margin-bottom: 30px;
+}
+
+.settings-section h2 {
+    margin-top: 0;
+}
+
+.settings-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settings-group label {
+    font-weight: 500;
+}
+
+.settings-group input,
+.settings-group select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.settings-group button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.column-list {
+    clear: both;
+    display: flex;
+}
+
+.users {
+    display: block;
+    margin-left: 8px;
+}
+
+
+@media screen and (max-width: 765px) {
+    .grid {
+        display: block;
+        width: 100%;
+    }
+
+    .middle-content.friends {
+        display: none;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .followers.grid {
+        display: block;
+    }
+
+    .message.flex {
+        display: flex;
+
+    }
+    .new-message {
+        min-width: 100%;
+    
+    }
+}
