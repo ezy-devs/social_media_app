@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -18,6 +18,37 @@ class Student(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
   
-    def __str__(self):
-        return f" {self.fullname} '--' {self.student_id}"
+   
 
+
+class Post(models.Model):
+    user = models.ForeignKey(User, related_name='users', on_delete=models.CASCADE)
+    id =  models.UUIDField(primary_key=True, default=uuid.uuid4)
+    content = models.TextField()
+    image = models.ImageField(upload_to='post_images', blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Category(models.Model):
+    user = models.ForeignKey(User, related_name='created_by', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+
+class Message(models.Model):
+    id =  models.UUIDField(primary_key=True, default=uuid.uuid4)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    reciever = models.ForeignKey(User, related_name='reciever', on_delete=models.CASCADE)
+    content = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id =  models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
+    image = models.ImageField(upload_to='post_images', blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+   

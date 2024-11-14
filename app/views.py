@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Student
-
+from .forms import PostCreationForm
 
 # Create your views here.
 
@@ -129,4 +129,17 @@ def Logout(request):
      return redirect('Login')
 
 def create_post(request):
+    
+    
     return render(request, 'app/create_post.html')
+
+def messages(request):
+     return render(request, 'app/messages.html')
+
+     
+# MANAGEMENT 
+def new_category(request):
+     return render(request, 'admin/new_category.html')
+
+def new_event(request):
+     return render(request, 'admin/new_event.html')
