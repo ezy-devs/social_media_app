@@ -1,10 +1,11 @@
 {% extends 'app/base.html' %}
 
+{% block link %} {% endblock %}
+
+{% block title %} Home | COMSC APP {% endblock %}
+
 {% block content %}
-
- 
-
-  <div class="container" style="padding-top: 60px;">
+<div class="container" style="padding-top: 60px;">
     <div class="flex">
       <div class="user flex" style="width: 100%; justify-content: space-between;">
         <div class="profile" style="display: flex; align-items: center;">
@@ -20,7 +21,14 @@
         </div>
       </div>
     </div>
-   
+   <!-- message -->
+    {% for message in success_msg %}
+    <div class="msg success" style="padding: 10px; background-color: #4491e9; color: #a0cdff; font-size: 18px;">
+      <p>
+        {{message}}
+      </p>
+    </div>
+    {% endfor %}
     <div class="grid">
       <div class="main-content">
         <div class="grid main-content">

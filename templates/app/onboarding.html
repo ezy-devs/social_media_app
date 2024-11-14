@@ -12,7 +12,9 @@
             <h2>Step 1: Complete Your Profile</h2>
             <p>Please fill in some additional details to complete your profile.</p>
             <form action="" method="post">
-
+                {% csrf_token %}
+                <label for="profileimage">Set Profile Image:</label>
+                <input type="file" class="form-control" id="username" name="profileimage" >
                 <label for="fullname">Fullname:</label>
                 <input type="text" class="form-control" id="username" name="fullname" placeholder="Enter Your Full Name" required>
 
