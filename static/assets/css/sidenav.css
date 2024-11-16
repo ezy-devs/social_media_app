@@ -99,11 +99,13 @@ body{
       font-size: 36px;
       margin-left: 50px;
     }
-    .openNav {
+    .closebtn {
       display: block;
+      color: white;
     }
     .search {
-      margin-right: 50px;
+     
+      display: none;
     }
     .profile-image.nav {
       display: none;

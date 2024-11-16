@@ -1,4 +1,31 @@
-<p style="color: blue; font-size: 25px;">
-    <h1>new category</h1>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias amet iste ipsa quos quae, velit dolorem veniam voluptate, exercitationem distinctio nulla voluptas eos corrupti excepturi blanditiis maxime esse dolore fugiat ad praesentium magni minima. Pariatur ut fuga delectus debitis sit? Deserunt magni voluptate perferendis excepturi deleniti libero ratione qui tempore!
-</p>
+{% extends 'app/base.html' %}
+
+
+{% block link %} {% endblock %}
+
+{% block title %} New Post | COMSC APP {% endblock %}
+
+
+
+  {% block content %}
+  <div class="container" style="padding-top: 60px;">
+    <form action="" method="post" class="form-control form-container" style="text-align: left;" enctype="multipart/form-data">
+        <h5 class="form-title" style="color: white;">Create New Category</h5>
+      {% csrf_token %}
+      <div class="input-container">
+        <input type="text" name="name" id="" class="form-control" placeholder="Name of Category">
+      </div>
+      <div class="input-container">
+        <textarea name="description" class="form-control" placeholder="description" rows="5"></textarea>
+      </div>
+      
+      <div class="input-container">
+        <input type="submit" class="btn btn-primary" value="New Category" style="min-width: 40%;">
+      </div>
+    </form>
+  </div>
+  {% endblock %}
+  
+</body>
+
+</html>

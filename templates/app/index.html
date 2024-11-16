@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 
 {% block link %} {% endblock %}
-
+{% block link2 %} {% endblock %}
 {% block title %} Home | COMSC APP {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
         <div class="profile" style="display: flex; align-items: center;">
           
           <div class="username" style="margin-bottom: 25px;">
-            <h6 class="title" style="margin-bottom: 18px;margin-left: 50px;"><a href="create_post.html"
+            <h6 class="title" style="margin-bottom: 18px;margin-left: 50px;"><a href="{% url 'create_post' %}"
                 class="form-control"> Add new post</a></h6>
           </div>
         </div>
@@ -32,16 +32,19 @@
     <div class="grid">
       <div class="main-content">
         <div class="grid main-content">
+          {% for post in posts %}
           <div class="card post">
             <div class="card-body">
               <div class="profile">
+                <a href="" style="color: rgb(233, 14, 167);">
                 <div class="profile-image">
-                  <img src="{{post_user_profile.profileimage.url}}" alt="">
+                  <img src="{{user_post.profileimage.url}}" alt="">
                 </div>
                 <div class="username" style="margin-bottom: 10px;">
-                  <h5 class="card-title" style="margin-bottom: 18px;"><a href="/profile/{{post.user}}"
-                      style="color: black;">@{{post.user}}</a>
+                  <h5 class="card-title" style="margin-bottom: 18px;">
+                     @{{post.user}}
                   </h5>
+                </a>
                 </div>
                 <!-- <div>
                   <p>Delete post</p>
@@ -50,15 +53,16 @@
 
               <div class="content">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptate modi libero quia assumenda? Dolores commodi nisi eos doloremque velit ut autem, ad alias dolor dicta reiciendis ex rerum reprehenderit!
+                 {{post.content|truncatewords:25}}
                 </p>
               </div>
-             
+             {% if post.image %}
               <div class="content-image card-img-top">
-                <img src="assets/images/codes.jpg" alt="" style="width: 100%;" class="card-img-top">
+                <img src="{{post.image.url}}" alt="" style="width: 100%;" class="card-img-top">
               </div>
-              
+            {% else %}
             
+            {% endif %}
               <div class="action">
                 <div>
                   <a href="/like-post?post_id={{post.id}}" class="btn btn-primary">
@@ -85,7 +89,7 @@
               </div>
             </div>
           </div>
-
+          {% endfor %}
          
         </div>
       </div>

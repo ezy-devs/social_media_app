@@ -18,6 +18,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/sidenav.css' %}">
+  {% block link2 %} <link rel="stylesheet" href="{% static 'assets/css/chatbox.css' %}">{% endblock %}
   {% block link %} 
   <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}"> 
    {% endblock %}
@@ -27,19 +28,23 @@
 <body>
     {% block navbar %}
     <nav class="navbar ">
-      <a class="navbar-brand btn" href="index.html">EzyChat</a>
+      <a class="navbar-brand btn" href="/">COMSC App</a>
       <div id="mySidenav" class="sidenav bg-color">
         <div class="flex">
           <div class="profile flex">
-            <a href="profile.html">
+            <a href="{% url 'profile' user_profile.id %}">
               <div class="profile-image">
-                <img src="images/emmynzos.jpg" alt="" style="width: 40px; height: 40px; margin-bottom: -4px;">
+                {% if request.user == user_profile.username %}
+                <img src="{{user_profile.profileimage.url}}" alt="" style="width: 40px; height: 40px; margin-bottom: -4px;">
+                {% else %}
+                <p>No Profile</p>
+                {% endif %}
               </div>
             </a>
           </div>
   
-          <div class="closebtn">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+          <div class="closebtn" style="display: block;color: white;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: white;">×</a>
           </div>
   
         </div>
@@ -81,17 +86,21 @@
           </svg>
         </a>
         <a href="{% url 'Logout' %}">Logout</a>
-        <!-- <a href="signup.html">Signup</a> -->
+       
+        <a href="">{{request.user}}</a>
       </div>
       <form class="d-flex search" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-primary change" type="submit"><i class="fa fa-search"></i></button>
       </form>
-      <a href="{{student_profile.profileimage.url}}">
+      <a href="{% url 'profile' user_profile.id %}">
         <div class="profile-image nav">
           
-          <img src="{{student_profile.profileimage.url}}" alt="" style="width: 40px; height: 40px; margin-bottom: -4px;">
-          
+          {% if request.user == user_profile.username %}
+          <img src="{{user_profile.profileimage.url}}" alt="" style="width: 40px; height: 40px; margin-bottom: -4px;">
+          {% else %}
+          <p>No Profile</p>
+          {% endif %}
         </div>
       </a>
       <span style="font-size: 30px; position: fixed;right: 0; top: 0; cursor: pointer" onclick="openNav()"

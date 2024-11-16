@@ -14,7 +14,11 @@
       <img src="{% static 'assets/images/default_image.jpg' %}" alt="" style="width: 80px; height: 80px;">
     </div>
     <p style="color: #42c1a6;">Please fill in some additional details to complete your profile.</p>
-
+    {% for message in messages %}
+    <div class="msg error">
+      {{message}}
+    </div>
+    {% endfor %}
     <form action="" method="post">
       {% csrf_token %}
 

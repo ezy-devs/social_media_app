@@ -1,29 +1,83 @@
-.roll-1{
-
-    padding: 10px;
-    margin-left: 50%;
-    border-radius: 5px;
-    width: 300px;
-}
-.roll-2{
-    padding: 10px;
-    background-color: azure;
-    border-radius: 5px;
-    width: 300px;
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #0d6efd, #6f42c1);
+    margin: 20px;
+    padding: 20px;
+    
 }
 
-@media screen and (max-width: 765px) {
-    .roll-1{
+.profile-container {
+    
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    background: linear-gradient(to bottom right, #0a1f44, #6f42c1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font-size: 15px;
+}
 
-        padding: 10px;
-        margin-left: 50%;
-        border-radius: 5px;
-        width: 200px;
-    }
-    .roll-2{
-        padding: 10px;
-        background-color: azure;
-        border-radius: 5px;
-        width: 200px;
-    }
+.profile-overview, .academic-details, .recent-activities, .contact-social {
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info {
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #fff;
+}
+
+.profile-overview {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    color: #fff;
+}
+
+h2 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.academic-details ul, .recent-activities ul {
+    list-style-type: none;
+    padding: 0;
+    color: #fff;
+}
+
+.academic-details li, .recent-activities li {
+    padding: 5px 0;
+}
+
+.contact-social button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.contact-social button:hover {
+    background-color: #0056b3;
 }

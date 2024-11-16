@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+
+{% block link %}
+{% endblock %}
+
+
+{% block title %} Profile > {{request.user}} | COMSC APP {% endblock %}
+
+{% block content %} 
+<div class="profile-container">
+    <!-- Profile Overview -->
+    <section class="profile-overview">
+        <div class="profile-picture">
+            <img src="{{user_profile.profileimage.url}}" alt="Student Photo">
+        </div><br>
+        <div class="profile-info">
+            <h1 id="studentName"> {{user_profile.fullname}}</h1>
+            <p><strong>Student ID:</strong> {{user_profile.student_id}}</p>
+            <p><strong>Email:</strong> johndoe@example.com</p>
+            <p><strong>Course:</strong> {{user_profile.course}}</p>
+        </div>
+    </section>
+
+    <!-- Academic Details -->
+    <section class="academic-details">
+        <h2>Academic Details</h2>
+        <ul>
+            <li><strong>Year of Study:</strong> {{user_profile.enroll_year}} Year</li>
+            <li><strong>Current GPA:</strong> {{user_profile.current_GPA}}</li>
+            <li><strong>Department:</strong> {{user_profile.department}}</li>
+            <li><strong>Specialization:</strong> {{user_profile.specialization}}</li>
+        </ul>
+    </section>
+
+    <!-- Recent Activities -->
+    <section class="recent-activities">
+        <h2>Recent Activities</h2>
+        <ul id="activityList">
+            <li>Posted a question in the Machine Learning forum - Oct 20, 2024</li>
+            <li>Commented on an assignment submission - Oct 18, 2024</li>
+            <li>Joined the AI Study Group - Oct 15, 2024</li>
+        </ul>
+    </section>
+
+    <!-- Contact & Social Links -->
+    <section class="contact-social">
+        <h2>Contact</h2>
+        <button onclick="sendMessage()">Send Message</button>
+        <button onclick="viewMoreActivities()">View All Activities</button>
+    </section>
+</div>
+{% endblock %}
