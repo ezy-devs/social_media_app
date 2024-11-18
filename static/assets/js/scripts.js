@@ -393,3 +393,49 @@ document.addEventListener("DOMContentLoaded", function() {
       <li>Completed Data Science Course - Oct 15, 2024</li>
   `;
 });
+
+
+
+
+
+
+document.getElementById('send-button').addEventListener('click', function() {
+    const content = document.getElementById('message-input').value;
+    const receiver_id = document.getElementById('receiver_id').value;
+
+    fetch('/send-message', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),
+        },
+        body: JSON.stringify({receiver_id, content}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Message sent') {
+            loadMessages(receiver_id);
+            document.getElementById('message-input').value = '';
+        }
+    });
+});
+
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+function loadMessages(receiver_id) {
+    fetch('get-messages/${receiver_id}/')
+    .then(response => response.json())
+    .then(data => {
+        const chatbox = document.getElementById('chat-box');
+        chatbox.innerHTML = '';
+
+        // Display the messages
+        data.messages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = '${msg.sender}: ${msg.content}';
+            chatbox.appendChild(messageDiv)
+        });
+    });
+}

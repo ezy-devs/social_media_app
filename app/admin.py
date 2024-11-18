@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 
-from .models import Profile, Post, Message, Event, Category
+from .models import Profile, Post, Message, Event, Category, Conversation
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -18,8 +19,13 @@ class EventAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'name')
 
+class ConversationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'sender', 'receiver', 'timestamp')
+
+
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Conversation, ConversationAdmin)

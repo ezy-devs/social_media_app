@@ -133,12 +133,9 @@ a {
     padding: 5px;
 }
 
-.chat .profile {
-    margin-bottom: -25px;
-    display: flexbox;
-}
 
-.chat .profile .profile-image img {
+
+.chat .profile-image img {
     width: 40px;
     height: 40px;
 }
@@ -227,7 +224,7 @@ a {
 .new-message {
     position: fixed;
     bottom: 0;
-    min-width: 693px;
+    
 
 }
 #reciever .card {
@@ -253,8 +250,8 @@ form {
 }
 
 .msg {
-    background: #FE979C;
-    color: red;
+    background: rgb(21, 139, 21);
+    color: rgb(138, 252, 138);
     border-radius: 5px;
     padding: 3px;
 }
@@ -416,8 +413,8 @@ input:focus {
         display: flex;
 
     }
-    .new-message {
-        min-width: 100%;
-    
+    .chat-list {
+        display: none;
+        overflow: hidden;
     }
 }

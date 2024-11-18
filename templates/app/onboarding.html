@@ -14,12 +14,12 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <label for="profileimage">Set Profile Image:</label>
-                <input type="file" class="form-control" id="username" name="image" >
+                <input type="file" class="form-control" id="username" name="image">
                 <label for="fullname">Fullname:</label>
                 <input type="text" class="form-control" id="username" name="fullname" placeholder="Enter Your Full Name" required>
 
                 <label for="studentId">Student ID:</label>
-                <input type="text" class="form-control" id="studentId" name="studentId" placeholder="e.g: FPG/HND/SWD/24/810" required>
+                <input type="text" class="form-control" id="studentId" name="student_id" placeholder="e.g: FPG/HND/SWD/24/810" required>
 
                 <label for="fullname">Course:</label>
                 <input type="text" class="form-control" id="course" name="course" placeholder="e.g Software and Web development"
@@ -36,7 +36,7 @@
                 <input type="number" class="form-control" id="yearOfStudy" name="enroll_year" min="1" max="6" required>
 
                 <label for="gpa">Current GPA:</label>
-                <input type="number" class="form-control" step="0.01" id="gpa" name="gpa" min="0" max="4" required="">
+                <input type="number" class="form-control" step="0.01" id="gpa" name="gpa" min="0" max="4">
 
                 <label for="department">Department:</label>
                 <input type="text" class="form-control" id="department" name="department" required>

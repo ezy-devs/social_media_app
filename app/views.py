@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
-from .models import Post, Event, Message, Category, Profile
+import json
+from .models import Post, Event, Message, Category, Profile, Conversation
 
 from .forms import PostCreationForm
 
@@ -26,7 +26,7 @@ def home(request):
     context = {
          'user_profile': user_profile,
          'posts':posts,
-          'user_post': user_post,
+        #   'user_post': user_post,
     }
     return render(request, 'app/index.html', context)
 
@@ -39,6 +39,11 @@ def profile(request, user_id):
     user_profile = get_object_or_404(Profile, id=user_id)
 
     return render(request, 'app/profile.html', {'user_profile':user_profile})
+
+def edit_profile(request, user_id):
+     user_profile = Profile.objects.get(username=request.user)  
+
+     return render(request, 'app/edit-profile.html', {'user_profile':user_profile})
 def register(request):
     if request.method == 'POST':
         
@@ -47,24 +52,20 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         if password == password2:
-            if User.objects.filter(username=username):
+            if User.objects.filter(username=username).exists():
                 
-                    messages.info(request, 'Account with {username} Already exist, Want to Retrieve Account?')
-                    context = {
-                        'username': username,
-                    }
+                    messages.info(request, f'Account with {username} Already exist, try again')
+                    
                     return redirect('register')
-            elif User.objects.filter(email=email):
-                    messages.info(request, 'Account with {email} Already exist, Want to Retrieve Account?')
-                    context = {
-                        'username': username,
-                        'email': email,
-                    }
+            elif User.objects.filter(email=email).exists():
+                    messages.info(request, f'Account with {email} Already exist, try again')
+                    
                     return redirect('register')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
                 login(request, user)
+
                 return redirect('onboarding')
             
         messages.info(request, 'password does not match, try again')
@@ -91,6 +92,7 @@ def onboarding(request):
         enroll_year = request.POST['enroll_year']
         current_GPA = request.POST['gpa']
         department = request.POST['department']
+        student_id = request.POST['student_id']
         specialization = request.POST['specialization']
         
         if Profile.objects.filter(fullname=fullname):
@@ -102,17 +104,8 @@ def onboarding(request):
               }
               return redirect('onboarding')
         
-        elif Profile.objects.filter(current_GPA=current_GPA):
-                messages.info(request, 'user already exist with {current_GPA}')
-
-                context = {
-                   'fullname': fullname,
-                   'current_GPA': current_GPA,
-              }
-                return redirect('onboarding', context)
-
         else:
-            student_profile = Profile.objects.create(username=username,profileimage=profileimage, fullname=fullname, course=course, enroll_year=enroll_year, department=department, specialization=specialization)
+            student_profile = Profile.objects.create(username=username, profileimage=profileimage, fullname=fullname, course=course, current_GPA=current_GPA, student_id=student_id, enroll_year=enroll_year, department=department, specialization=specialization)
             student_profile.save()
             messages.info(request, "Thanks You've Successfully Setup your Profile!")
             return redirect('/')
@@ -127,13 +120,13 @@ def Login(request):
         
         user = authenticate(username=username, password=password)
         if user is not None:
-            
+           
             login(request, user)
             messages.info(request, f'{username} your are Logged in Successfully!')
             return redirect('home')
                    
         else:
-            messages.info(request, 'User does not exist')
+            messages.info(request, 'Wrong Credentials, try again!')
             return redirect('Login')
         
     return render(request, 'app/Login.html')
@@ -161,10 +154,93 @@ def create_post(request):
 
     return render(request, 'app/create_post.html', {'categories':categories})
 
-def chat_box(request):
-     return render(request, 'app/messages.html')
+def chat_list(request):
+    try: 
+        user_profile = Profile.objects.get(username=request.user)      
+    except:
+            messages.info(request, 'Hi!, Update your Profile to continue enjoying this platform')
+            return redirect('onboarding')
+    context = {
+         'user_profile': user_profile,
+        #  'posts':posts,
+        #   'user_post': user_post,
+    }
+    return render(request, 'app/chat-list.html', context)
 
+def chat_view(request, receiver_id):
+    receiver = User.objects.get(id=receiver_id)
+    chats = Message.objects.filter(reciever=receiver, sender=request.user)
+    sender_msg = Message.objects.filter(sender=request.user)
+    receiver_msg = Message.objects.filter(reciever=receiver)
+    try: 
+        user_profile = Profile.objects.get(username=request.user)      
+    except:
+            messages.info(request, 'Hi!, Update your Profile to continue enjoying this platform')
+            return redirect('onboarding')
+    context = {
+         'user_profile': user_profile,
+        #  'posts':posts,
+        #   'user_post': user_post,
+        'receiver_id': receiver.id,
+        'chats':chats,
+        'sender_msg':sender_msg,
+        'receiver_msg':receiver_msg,
+    }
+    # sender = request.user
+    # message = Message.objects.get(sender=sender, reciever=receiver)
+    # context = {
+    #      'messages':message
+    # }
+
+    return render(request, 'app/chatbox.html', context)
+
+
+def error_404(request):
      
+     return render(request, 'app/404_error.html')
+
+def conversation(request, msg_id):
+    user_profile = Profile.objects.get(username=request.user)     
+    try:  
+        msg_id = Conversation.objects.get(id=msg_id)
+        
+    except:
+     return redirect('error_404')
+
+    return render(request, 'app/chatbox.html', {'user_profile':user_profile})
+    
+def get_messages(request, msg_id):
+    user_profile = Profile.objects.get(username=request.user) 
+    if request.method == 'GET':    
+        try:  
+            msg_id = Conversation.objects.get(id=msg_id)
+        except:
+            return redirect('error_404')
+        
+
+        return render(request, 'app/chatbox.html', {'user_profile':user_profile})
+    
+def send_message(request):
+        if request.method == 'POST':
+            data = json.loads(request.body)
+            sender = request.user
+            receiver_id = data.get('receiver_id')
+            content = data.get('content')
+
+            receiver = get_object_or_404(User, id=receiver_id)
+            message = Conversation.objects.create(sender=sender, receiver=receiver, content=content)
+            
+            return JsonResponse({'status': 'success', 'message_id': message.id})
+
+def get_messages(request, msg_id):
+     if request.method == 'GET':
+        sender = request.user
+        receiver =get_object_or_404(User, id=msg_id)
+        message_list = Message.objects.filter(sender=sender, reciever=receiver) | Message.objects.filter(sender=receiver, reciever=sender)
+        message_list.order_by('timestamp')
+        return JsonResponse({'messages': list(message_list.values())})
+
+
 # MANAGEMENT 
 def new_category(request):
     if request.method == 'POST':

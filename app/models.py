@@ -47,11 +47,23 @@ class Post(models.Model):
 
 class Message(models.Model):
     id =  models.UUIDField(primary_key=True, default=uuid.uuid4)
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    reciever = models.ForeignKey(User, related_name='reciever', on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, related_name='sends_messages', on_delete=models.CASCADE)
+    reciever = models.ForeignKey(User, related_name='recieves_messages', on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+class Conversation(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    sender = models.ForeignKey(User, related_name='sends_conversation', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='receivers_conversation', on_delete=models.CASCADE)
+    content = models.TextField(null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.sender} send {self.receiver} {self.content}'
+    
+
 
 class Event(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

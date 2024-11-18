@@ -11,12 +11,16 @@
     <!-- Profile Overview -->
     <section class="profile-overview">
         <div class="profile-picture">
+            {% if user_profile.profileimage %}
             <img src="{{user_profile.profileimage.url}}" alt="Student Photo">
+            {% else %}
+            <img src="" alt="{{user_profile.username}}">
+            {% endif %}
         </div><br>
         <div class="profile-info">
             <h1 id="studentName"> {{user_profile.fullname}}</h1>
             <p><strong>Student ID:</strong> {{user_profile.student_id}}</p>
-            <p><strong>Email:</strong> johndoe@example.com</p>
+            <p><strong>Email:</strong> {{user_profile.user.email}}</p>
             <p><strong>Course:</strong> {{user_profile.course}}</p>
         </div>
     </section>
@@ -46,7 +50,7 @@
     <section class="contact-social">
         <h2>Contact</h2>
         <button onclick="sendMessage()">Send Message</button>
-        <button onclick="viewMoreActivities()">View All Activities</button>
+        <button> <a href="{% url 'edit-profile' user_profile.id %}">Edit Info</a></button>
     </section>
 </div>
 {% endblock %}
